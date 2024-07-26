@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --lebar-untuk-mengalihkan: 3.5em;
+  --tinggi-untuk-mengalihkan: 2em;
+  --ukuran-ikon: 1.4em;
+  --mengimbangi-penggeser: 0.3em;
+  --warna-latar: #0f0e17;
+  --warna-latar-penggeser: #f4f4f5;
+  --warna-latar-penggeser-aktif: #303136;
+  --gradien-1: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+  --gradien-2: #303136;
+  --bayangan: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+}
+
+body {
+  background: var(--warna-latar);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  min-height: 100vh;
+}
+
+.mengalihkan {
+  display: block;
+  position: relative;
+  width: var(--lebar-untuk-mengalihkan);
+  height: var(--tinggi-untuk-mengalihkan);
+}
+
+.mengalihkan input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.penggeser {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--warna-latar-penggeser);
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.penggeser:before {
+  position: absolute;
+  content: "";
+  height: var(--ukuran-ikon);
+  width: var(--ukuran-ikon);
+  border-radius: 20px;
+  left: var(--mengimbangi-penggeser);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--gradien-1);
+  transition: 0.4s;
+}
+
+input:checked + .penggeser {
+  background-color: var(--warna-latar-penggeser-aktif);
+}
+
+input:checked + .penggeser:before {
+  left: calc(100% - (var(--ukuran-ikon) + var(--mengimbangi-penggeser)));
+  background: var(--gradien-2);
+  box-shadow: var(--bayangan);
+}
